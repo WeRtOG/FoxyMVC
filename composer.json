@@ -1,0 +1,13 @@
+{
+    "name": "wertog/foxy-mvc",
+    "description": "PHP8 MVC Framework",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "WeRtOG\\FoxyMVC\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
