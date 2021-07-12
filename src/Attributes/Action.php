@@ -1,19 +1,20 @@
 <?php
-    /*
-        WeRtOG
-        FoxyMVC
-    */
-	namespace WeRtOG\FoxyMVC\Attributes;
 
-    use Attribute;
+/*
+    WeRtOG
+    FoxyMVC
+*/
+namespace WeRtOG\FoxyMVC\Attributes;
 
-    #[Attribute]
-    class Action
+use Attribute;
+
+#[Attribute]
+class Action
+{
+    public string|array|null $RequestMethod;
+
+    public function __construct(string|array|null $RequestMethod = null)
     {
-        public string|array|null $RequestMethod;
-
-        public function __construct(string|array|null $RequestMethod = null)
-        {
-            $this->RequestMethod = $RequestMethod;
-        }
+        $this->RequestMethod = $RequestMethod;
     }
+}

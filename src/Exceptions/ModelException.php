@@ -1,11 +1,11 @@
 <?php
-    /*
-        WeRtOG
-        FoxyMVC
-    */
-    namespace WeRtOG\FoxyMVC\Exceptions;
 
-    use Exception;
+/*
+    WeRtOG
+    FoxyMVC
+*/
+namespace WeRtOG\FoxyMVC\Exceptions;
 
-    class ModelException extends Exception {}
-?>
+use Exception;
+
+class ModelException extends Exception {}

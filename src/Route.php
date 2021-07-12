@@ -26,24 +26,24 @@
 
 		static function GetRoot(): string
 		{
-			$rt = FOXYMVC_ROOT_PATH;
-			$rt = str_replace(str_replace('/', '\\', $_SERVER['DOCUMENT_ROOT']), '', $rt);
-			$rt = str_replace('\\', '/', $rt);
-			return $rt;
+			$Root = str_replace('\\', '/', FOXYMVC_ROOT_PATH);
+			$DocumentRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+			
+			$Root = str_replace($DocumentRoot, '', $Root);
+			return $Root;
 		}
 
 		static function GetProjectRoot()
 		{
-			$rt = dirname(Route::GetRoot());
-			return $rt;
+			$Root = dirname(Route::GetRoot());
+			return $Root;
 
 		}
 
 		static function GetRoute(): string
 		{
-			$rt = Route::GetRoot();
-			$rt = str_replace($rt, '', $_SERVER['REQUEST_URI']);
-			return $rt;
+			$Root = Route::GetRoot();
+			return str_replace($Root, '', $_SERVER['REQUEST_URI']);
 		}
 
 		static function Navigate(string $Page)
@@ -175,8 +175,11 @@
 
 				if(is_string($ProjectNamespace))
 				{
-					self::InitializeController($ActionName, $ActionID, $ProjectNamespace . '\\' . $ControllerName, $Models, $GlobalData);
-					return;
+					if(class_exists($ProjectNamespace . '\\' . $ControllerName))
+					{
+						self::InitializeController($ActionName, $ActionID, $ProjectNamespace . '\\' . $ControllerName, $Models, $GlobalData);
+						return;
+					}
 				}
 				else if(is_array($ProjectNamespace))
 				{
