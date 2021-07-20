@@ -57,7 +57,7 @@
 			self::Navigate('/');
 		}
 
-		static function InitializeControllerAction(Controller $Controller, string $ActionName, string $ActionID, string $ControllerName, $GlobalData = []): void
+		static function InitializeControllerAction(Controller $Controller, string $ActionName, string $ActionID, string $ControllerName, array &$GlobalData = []): void
 		{
 			$Reflection = new ReflectionClass($ControllerName);
 			$ReflectionAction = $Reflection->getMethod($ActionName);
@@ -107,9 +107,9 @@
 			Response::Send($ControllerResponse);
 		}
 
-		static function InitializeController(string $ActionName, string $ActionID, string $ControllerName, array $Models = [], array $GlobalData = []): void
+		static function InitializeController(string $ActionName, string $ActionID, string $ControllerName, array $Models = [], array &$GlobalData = []): void
 		{
-			$Controller = new $ControllerName($Models);
+			$Controller = new $ControllerName($Models, $GlobalData);
 		
 			if(method_exists($Controller, $ActionName))
 			{
