@@ -14,7 +14,7 @@ use WeRtOG\FoxyMVC\ControllerResponse\Response;
 class Controller
 {
 	
-	private ?array $GlobalData;
+	public ?array $GlobalData;
 
 	public function __construct(array $Models = [], ?array &$GlobalData = null)
 	{
