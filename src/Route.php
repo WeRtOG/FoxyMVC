@@ -46,15 +46,16 @@
 			return str_replace($Root, '', $_SERVER['REQUEST_URI']);
 		}
 
-		static function Navigate(string $Page)
+		static function Navigate(string $Page): Response
 		{
 			header('Location: ' . Route::GetRoot() . '/' . $Page);
 			exit();
+			return new Response('');
 		}
 
-		static function NavigateToRoot()
+		static function NavigateToRoot(): Response
 		{
-			self::Navigate('/');
+			return self::Navigate('/');
 		}
 
 		static function InitializeControllerAction(Controller $Controller, string $ActionName, string $ActionID, string $ControllerName, ?array &$GlobalData = null): void
