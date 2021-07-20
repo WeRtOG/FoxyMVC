@@ -35,7 +35,7 @@
 
 		static function GetProjectRoot()
 		{
-			$Root = dirname(Route::GetRoot());
+			$Root = Route::GetRoot();
 			return $Root;
 
 		}
