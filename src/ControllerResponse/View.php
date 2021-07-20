@@ -41,6 +41,7 @@ class View extends Response
 	{
 		$FilePublicPath = Route::GetProjectRoot() . str_replace(FOXYMVC_ROOT_PATH, '', $Path);
 		$FilePublicPath = str_replace('\\', '/', $FilePublicPath);
+		$FilePublicPath = str_replace('//', '/', $FilePublicPath);
 
 		echo '<link rel="stylesheet" href="' . $FilePublicPath . '?v='.filemtime($Path).'">' . PHP_EOL . '	';
 	}
@@ -49,6 +50,7 @@ class View extends Response
 	{
 		$FilePublicPath = Route::GetProjectRoot() . str_replace(FOXYMVC_ROOT_PATH, '', $Path);
 		$FilePublicPath = str_replace('\\', '/', $FilePublicPath);
+		$FilePublicPath = str_replace('//', '/', $FilePublicPath);
 
 		echo '<script src="' . $FilePublicPath . '?v='.filemtime($Path).'"></script>' . PHP_EOL;
 	}
