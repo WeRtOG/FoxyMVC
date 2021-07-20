@@ -23,7 +23,7 @@ class Controller
 			$this->{$ModelName} = $Model;
 		}
 
-		$this->GlobalData = $GlobalData;
+		$this->GlobalData = &$GlobalData;
 	}
 	
 	public function Index(): Response

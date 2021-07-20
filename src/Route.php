@@ -57,7 +57,7 @@
 			self::Navigate('/');
 		}
 
-		static function InitializeControllerAction(Controller $Controller, string $ActionName, string $ActionID, string $ControllerName, array &$GlobalData = []): void
+		static function InitializeControllerAction(Controller $Controller, string $ActionName, string $ActionID, string $ControllerName, ?array &$GlobalData = null): void
 		{
 			$Reflection = new ReflectionClass($ControllerName);
 			$ReflectionAction = $Reflection->getMethod($ActionName);
@@ -101,13 +101,13 @@
 
 			if($ControllerResponse instanceof View)
 			{
-				$ControllerResponse->GlobalData = $GlobalData; 
+				$ControllerResponse->GlobalData = &$GlobalData; 
 			}
 			
 			Response::Send($ControllerResponse);
 		}
 
-		static function InitializeController(string $ActionName, string $ActionID, string $ControllerName, array $Models = [], array &$GlobalData = []): void
+		static function InitializeController(string $ActionName, string $ActionID, string $ControllerName, array $Models = [], ?array &$GlobalData = null): void
 		{
 			$Controller = new $ControllerName($Models, $GlobalData);
 		
@@ -130,7 +130,7 @@
 		}
 
 
-		static function Start(string|array $ProjectNamespace, string $ProjectPath, array $Models = [], array $GlobalData = [])
+		static function Start(string|array $ProjectNamespace, string $ProjectPath, array $Models = [], ?array $GlobalData = null)
 		{
 			define('FOXYMVC_ROOT_PATH', $ProjectPath);
 
