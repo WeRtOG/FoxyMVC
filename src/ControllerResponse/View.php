@@ -37,11 +37,16 @@ class View extends Response
 		$this->ResponseCode = $ResponseCode;
 	}
 
-	public function LoadCSS(string $Path)
+	public function LoadCSS(string $Path, int $PathIntOffset = 0)
 	{
 		$ProjectRootPath = str_replace('\\', '/', Route::GetProjectRoot());
 		$RootPath = str_replace('\\', '/', FOXYMVC_ROOT_PATH);
 		$Path = str_replace('\\', '/', $Path);
+
+		for($i = 0; $i < $PathIntOffset; $i++) {
+			$ProjectRootPath = dirname($ProjectRootPath);
+			$RootPath = dirname($RootPath);
+		}
 		
 		$FilePublicPath = $ProjectRootPath . str_replace($RootPath, '', $Path);
 		$FilePublicPath = str_replace('//', '/', $FilePublicPath);
@@ -49,11 +54,16 @@ class View extends Response
 		echo '<link rel="stylesheet" href="' . $FilePublicPath . '?v='.filemtime($Path).'">' . PHP_EOL . '	';
 	}
 
-	public function LoadJS(string $Path)
+	public function LoadJS(string $Path, int $PathIntOffset = 0)
 	{
 		$ProjectRootPath = str_replace('\\', '/', Route::GetProjectRoot());
 		$RootPath = str_replace('\\', '/', FOXYMVC_ROOT_PATH);
 		$Path = str_replace('\\', '/', $Path);
+
+		for($i = 0; $i < $PathIntOffset; $i++) {
+			$ProjectRootPath = dirname($ProjectRootPath);
+			$RootPath = dirname($RootPath);
+		}
 		
 		$FilePublicPath = $ProjectRootPath . str_replace($RootPath, '', $Path);
 		$FilePublicPath = str_replace('//', '/', $FilePublicPath);

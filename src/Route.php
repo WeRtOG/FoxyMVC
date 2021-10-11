@@ -30,6 +30,8 @@
 			$DocumentRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 			
 			$Root = str_replace($DocumentRoot, '', $Root);
+
+
 			return $Root;
 		}
 
