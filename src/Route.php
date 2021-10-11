@@ -30,16 +30,25 @@
 			$DocumentRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
 			
 			$Root = str_replace($DocumentRoot, '', $Root);
-
-
 			return $Root;
+		}
+
+		static function CalculatePathIntOffset(string $Path1, string $Path2): int
+		{
+			$Path1 = str_replace('\\', '/', $Path1);
+			$Path2 = str_replace('\\', '/', $Path2);
+			
+			$ReplaceProbe1 = str_replace($Path2, '', $Path1);
+			$ReplaceProbe2 = str_replace($Path1, '', $Path2);
+		
+			$Offset = $ReplaceProbe1 == $Path1 ? $ReplaceProbe2 : $ReplaceProbe1;
+			return count(array_filter(explode("/", $Offset)));
 		}
 
 		static function GetProjectRoot()
 		{
 			$Root = Route::GetRoot();
 			return $Root;
-
 		}
 
 		static function GetRoute(): string
